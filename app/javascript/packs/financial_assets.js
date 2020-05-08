@@ -27,7 +27,7 @@ $(document).ready(function() {
         },
         {
           type: 'line',
-          label: 'Dividends',
+          label: 'With Dividends',
           data: datapointsWithDividends,
           lineTension: 0,
           backgroundColor: 'blue',
