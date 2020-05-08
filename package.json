@@ -1,0 +1,24 @@
+{
+  "name": "portfolio",
+  "private": true,
+  "dependencies": {
+    "@rails/actioncable": "^6.0.0",
+    "@rails/activestorage": "^6.0.0",
+    "@rails/ujs": "^6.0.0",
+    "@rails/webpacker": "4.2.2",
+    "bootstrap": "^4.4.1",
+    "chart.js": "^2.9.2",
+    "datatables.net-bs4": "^1.10.20",
+    "datepicker": "^0.0.0",
+    "font-awesome": "^4.7.0",
+    "imports-loader": "^0.8.0",
+    "jquery": "^3.5.1",
+    "jquery-ui": "^1.12.1",
+    "popper.js": "^1.16.1",
+    "yadcf": "^0.9.3"
+  },
+  "version": "0.1.0",
+  "devDependencies": {
+    "webpack-dev-server": "^3.10.3"
+  }
+}

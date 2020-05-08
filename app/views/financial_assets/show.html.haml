@@ -1,0 +1,70 @@
+= javascript_pack_tag 'financial_assets'
+%p#notice= notice
+= link_to 'Edit', edit_financial_asset_path(@financial_asset)
+|
+= link_to 'Back', financial_assets_path
+%p
+  %strong Ticker symbol:
+  = @financial_asset.ticker_symbol
+%table.table
+  %thead
+    %tr
+      %td Current Price
+      %td Total Quantity
+      %td Dividend Quantity
+      %td Total Invested
+      %td Total Value
+      %td Profit/Loss
+      %td % Profit/Loss
+      %td CAGR
+  %tbody
+    %tr
+      %td
+        $#{'%.2f' % @financial_asset.current_price}
+      %td= '%.3f' % @financial_asset.total_quantity
+      %td= '%.3f' % @financial_asset.dividend_quantity
+      %td
+        $#{'%.2f' % @financial_asset.total_invested}
+      %td
+        $#{'%.2f' % @financial_asset.total_value}
+      %td
+        $#{'%.2f' % @financial_asset.profit_loss}
+      %td
+        = '%.3f' % @financial_asset.pct_profit_loss
+        \%
+      %td
+        = '%.3f' % @financial_asset.cagr
+        \%
+
+%a.btn.btn-primary{'data-toggle': 'collapse', href: '#lotsTable', role: 'button'}
+  Show/Hide Lots
+.collapse#lotsTable
+  %table.table
+    %thead
+      %tr
+        %td Date
+        %td.text-right Price
+        %td.text-right Quantity
+        %td.text-right Value
+        %td.text-right Current Value
+        %td.text-right Profit/Loss
+        %td.text-right % Profit/Loss
+        %td.text-right Investment?
+    %tbody
+      - @transactions.each do |transaction|
+        %tr
+          %td= transaction.date
+          %td.text-right
+            $#{'%.2f' % transaction.price_paid}
+          %td.text-right= '%.3f' % transaction.quantity
+          %td.text-right= '%.2f' % transaction.value
+          %td.text-right= '%.2f' % transaction.current_value
+          %td.text-right= '%.2f' % transaction.profit_loss
+          %td.text-right
+            = '%.3f' % transaction.pct_profit_loss
+            \%
+          %td.text-right= transaction.investment
+
+#datapoints-no-dividends{"data-datapoints" => "#{@datapoints_no_dividends.to_json}"}
+#datapoints-with-dividends{"data-datapoints" => "#{@datapoints_with_dividends.to_json}"}
+%canvas#datachart.plot{:style => "height:300px; backgroundColor: \"#ddd !important;\""}

@@ -1,0 +1,13 @@
+%p#notice= notice
+%p
+  %strong Date:
+  = @quote.date
+%p
+  %strong Price:
+  = @quote.price
+%p
+  %strong Financial asset:
+  = @quote.financial_asset_id
+= link_to 'Edit', edit_quote_path(@quote)
+|
+= link_to 'Back', quotes_path

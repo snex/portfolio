@@ -1,0 +1,14 @@
+= bootstrap_form_with(model: financial_asset, local: true) do |form|
+  - if financial_asset.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(financial_asset.errors.count, "error")
+        prohibited this financial_asset from being saved:
+      %ul
+        - financial_asset.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = form.label :ticker_symbol
+    = form.text_field :ticker_symbol
+  .actions
+    = form.submit

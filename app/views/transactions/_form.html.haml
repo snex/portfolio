@@ -1,0 +1,26 @@
+= bootstrap_form_with(model: transaction, local: true) do |form|
+  - if transaction.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(transaction.errors.count, "error")
+        prohibited this transaction from being saved:
+      %ul
+        - transaction.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = form.label :date
+    = form.date_select :date
+  .field
+    = form.label :quantity
+    = form.text_field :quantity
+  .field
+    = form.label :price_paid
+    = form.text_field :price_paid
+  .field
+    = form.label :investment
+    = form.check_box :investment
+  .field
+    = form.label :financial_asset_id
+    = form.text_field :financial_asset_id
+  .actions
+    = form.submit
