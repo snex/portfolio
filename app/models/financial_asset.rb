@@ -105,10 +105,10 @@ class FinancialAsset < ApplicationRecord
   end
 
   def investment_data
-    self.quotes.joins('left outer join transactions on quotes.date = transactions.date').where(transactions: { investment: [true, nil] }).order('quotes.date').pluck(:price_paid)
+    self.quotes.joins('left outer join transactions on quotes.date = transactions.date and quotes.financial_asset_id = transactions.financial_asset_id').where(transactions: { investment: [true, nil] }).order('quotes.date').pluck(:price_paid)
   end
 
   def dividend_data
-    self.quotes.joins('left outer join transactions on quotes.date = transactions.date').where(transactions: { investment: [false, nil] }).order('quotes.date').pluck(:price_paid)
+    self.quotes.joins('left outer join transactions on quotes.date = transactions.date and quotes.financial_asset_id = transactions.financial_asset_id').where(transactions: { investment: [false, nil] }).order('quotes.date').pluck(:price_paid)
   end
 end
