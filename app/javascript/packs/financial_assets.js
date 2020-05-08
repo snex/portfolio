@@ -10,7 +10,7 @@ $(document).ready(function() {
   var dividendData = $('#dividend-data').data('datapoints').map(x => parseFloat(x));
 
   var config = {
-    type: 'line',
+    type: 'bar',
     data: {
       labels: labels,
       datasets: [
