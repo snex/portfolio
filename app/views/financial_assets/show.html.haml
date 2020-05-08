@@ -65,6 +65,8 @@
             \%
           %td.text-right= transaction.investment
 
-#datapoints-no-dividends{"data-datapoints" => "#{@datapoints_no_dividends.to_json}"}
-#datapoints-with-dividends{"data-datapoints" => "#{@datapoints_with_dividends.to_json}"}
+#datapoints-no-dividends{'data-datapoints' => "#{@datapoints_no_dividends.to_json}"}
+#datapoints-with-dividends{'data-datapoints' => "#{@datapoints_with_dividends.to_json}"}
+#investment-data{'data-datapoints' => "#{@investment_data.to_json}"}
+#dividend-data{'data-datapoints' => "#{@dividend_data.to_json}"}
 %canvas#datachart.plot{:style => "height:300px; backgroundColor: \"#ddd !important;\""}

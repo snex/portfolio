@@ -11,6 +11,8 @@ class FinancialAssetsController < ApplicationController
   # GET /financial_assets/1.json
   def show
     @transactions = @financial_asset.transactions.order(:date)
+    @investment_data = @financial_asset.investment_data
+    @dividend_data= @financial_asset.dividend_data
     @datapoints_no_dividends = @financial_asset.datapoints_no_dividends
     @datapoints_with_dividends = @financial_asset.datapoints_with_dividends
   end

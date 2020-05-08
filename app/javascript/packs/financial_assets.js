@@ -3,11 +3,11 @@ require('chart.js')
 var chart;
 
 $(document).ready(function() {
-  var datapointsNoDividends = $('#datapoints-no-dividends').data('datapoints');
-  var datapointsWithDividends = $('#datapoints-with-dividends').data('datapoints');
-  var labels = datapointsNoDividends.map(x => x[0]);
-  var datapointsNoDividends = datapointsNoDividends.map(x => parseFloat(x[1]));
-  var datapointsWithDividends = datapointsWithDividends.map(x => parseFloat(x[1]));
+  var labels = $('#datapoints-no-dividends').data('datapoints').map(x => x[0]);
+  var datapointsNoDividends = $('#datapoints-no-dividends').data('datapoints').map(x => parseFloat(x[1]));
+  var datapointsWithDividends = $('#datapoints-with-dividends').data('datapoints').map(x => parseFloat(x[1]));
+  var investmentData = $('#investment-data').data('datapoints').map(x => parseFloat(x));
+  var dividendData = $('#dividend-data').data('datapoints').map(x => parseFloat(x));
 
   var config = {
     type: 'line',
@@ -15,6 +15,7 @@ $(document).ready(function() {
       labels: labels,
       datasets: [
         {
+          type: 'line',
           label: 'No Dividends',
           data: datapointsNoDividends,
           lineTension: 0,
@@ -25,6 +26,7 @@ $(document).ready(function() {
           pointHoverRadius: 0
         },
         {
+          type: 'line',
           label: 'Dividends',
           data: datapointsWithDividends,
           lineTension: 0,
@@ -33,6 +35,20 @@ $(document).ready(function() {
           fill: false,
           pointRadius: 0,
           pointHoverRadius: 0
+        },
+        {
+          type: 'bar',
+          label: 'Investments',
+          data: investmentData,
+          backgroundColor: 'yellow',
+          borderColor: 'yellow'
+        },
+        {
+          type: 'bar',
+          label: 'Dividends',
+          data: dividendData,
+          backgroundColor: 'green',
+          borderColor: 'green'
         }
       ]
     },

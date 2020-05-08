@@ -103,4 +103,12 @@ class FinancialAsset < ApplicationRecord
     }
     self.class.connection.select_all(sql).rows.map { |row| [row.first.to_date, row.last.to_d] }
   end
+
+  def investment_data
+    self.quotes.joins('left outer join transactions on quotes.date = transactions.date').where(transactions: { investment: [true, nil] }).order('quotes.date').pluck(:price_paid)
+  end
+
+  def dividend_data
+    self.quotes.joins('left outer join transactions on quotes.date = transactions.date').where(transactions: { investment: [false, nil] }).order('quotes.date').pluck(:price_paid)
+  end
 end
