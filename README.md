@@ -1,24 +1,7 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+You will need an API key from [IEXCLOUD.IO](https://iexcloud.io/). Put it into Rails.application.credentials.iex_api_key
 
-Things you may want to cover:
+Run "bundle exec whenever --write-crontab" to set up the daily cron task.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+If your portfolio contains mutual funds, when entering dividend payouts, it is advisable to enter them on the business day *prior* to the payout date, otherwise you may see odd dips in your graphs due to the way mutual fund dividend/distribution reinvestments work.
