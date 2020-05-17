@@ -27,15 +27,24 @@ class FinancialAsset < ApplicationRecord
   end
 
   def total_value
-    (total_quantity * current_price)
+    total_quantity * current_price
   end
 
   def profit_loss
-    (total_value - transactions.where(investment: true).sum('price_paid * quantity'))
+    total_value - total_invested
+  end
+
+  def profit_loss_ex_dividends
+    # remove n+1
+    transactions.map(&:profit_loss).sum
   end
 
   def pct_profit_loss
     100 * (profit_loss / total_invested)
+  end
+
+  def pct_profit_loss_ex_dividends
+    100 * (profit_loss_ex_dividends / total_invested)
   end
 
   def capital_gains
