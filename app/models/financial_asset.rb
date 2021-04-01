@@ -120,10 +120,10 @@ class FinancialAsset < ApplicationRecord
                                      and quotes.financial_asset_id = transactions.financial_asset_id'
       ).
       order('quotes.date').
-      pluck('case transactions.investment
+      pluck(Arel.sql('case transactions.investment
                when true then price_paid
                else null
-            end')
+            end'))
   end
 
   def dividend_data
@@ -133,9 +133,9 @@ class FinancialAsset < ApplicationRecord
                                      and quotes.financial_asset_id = transactions.financial_asset_id'
       ).
       order('quotes.date').
-      pluck('case transactions.investment
+      pluck(Arel.sql('case transactions.investment
                when false then price_paid
                else null
-            end')
+            end'))
   end
 end
