@@ -25,15 +25,15 @@ gem 'jbuilder', '~> 2.7'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
-gem 'haml'
-gem 'active_link_to'
-gem 'passenger'
+gem 'haml', '~> 5.0'
+gem 'active_link_to', '~> 1.0'
+gem 'passenger', '~> 6.0'
 gem 'ajax-datatables-rails', git: 'git@github.com:jbox-web/ajax-datatables-rails.git'
-gem 'arel_extensions'
+gem 'arel_extensions', '~> 2.0'
 gem 'stock_quote', '~> 3.0'
-gem 'whenever'
+gem 'whenever', '~> 1.0'
 gem 'cash_flow_analysis'
-gem 'bootstrap_form'
+gem 'bootstrap_form', '~> 4.5'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

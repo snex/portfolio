@@ -19,6 +19,6 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 1.day, at: '12:30 am' do
+every 1.day, at: '6:30 am' do
   runner 'Quote.fetch_all'
 end
