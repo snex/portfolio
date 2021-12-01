@@ -8,7 +8,7 @@ class Quote < ApplicationRecord
 
         quote = StockQuote::Stock.quote(fa.ticker_symbol.split(':').last)
 
-        if quote.latest_time.to_date == fa.last_close_date
+        if quote.latest_time.to_date <= fa.last_close_date
           Rails.logger.info "No new data for #{fa.ticker_symbol}, skipping"
           next
         end
