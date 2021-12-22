@@ -13,6 +13,7 @@ class Quote < ApplicationRecord
           next
         end
 
+        Rails.logger.info "Fetched data for #{fa.ticker_symbol}, price = #{quote.latest_price}"
         Quote.create!(financial_asset: fa, date: quote.latest_time.to_date, price: quote.latest_price)
       end
     rescue => e
