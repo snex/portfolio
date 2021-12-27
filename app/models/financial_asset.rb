@@ -3,15 +3,15 @@ class FinancialAsset < ApplicationRecord
   has_many :transactions
 
   def first_investment_date
-    transactions.order(:date).first.date
+    transactions.order(:date).first.try(:date) || Date.today
   end
 
   def current_price
-    quotes.order(date: :desc).first.price
+    quotes.order(date: :desc).first.try(:price).to_i
   end
 
   def last_close_date
-    quotes.order(date: :desc).first.date
+    quotes.order(date: :desc).first.try(:date) || Date.today
   end
 
   def total_quantity

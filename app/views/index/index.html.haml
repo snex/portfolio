@@ -1,1 +1,60 @@
-hi
+= javascript_pack_tag 'financial_assets'
+%p#notice= notice
+%p
+  %strong Entire Portfolio
+%table.table
+  %thead
+    %tr
+      %td Total Invested
+      %td Total Value
+      %td Profit/Loss
+      %td % Profit/Loss
+  %tbody
+    %tr
+      %td
+        $#{'%.2f' % @portfolio.total_invested}
+      %td
+        $#{'%.2f' % @portfolio.total_value}
+      %td
+        $#{'%.2f' % @portfolio.profit_loss}
+      %td
+        = '%.3f' % @portfolio.pct_profit_loss
+        \%
+
+%a.btn.btn-primary{'data-toggle': 'collapse', href: '#lotsTable', role: 'button'}
+  Show/Hide Lots
+.collapse#lotsTable
+  %table.table
+    %thead
+      %tr
+        %td Date
+        %td.text-right Ticker
+        %td.text-right Price
+        %td.text-right Quantity
+        %td.text-right Value
+        %td.text-right Current Value
+        %td.text-right Profit/Loss
+        %td.text-right % Profit/Loss
+        %td.text-right Investment?
+    %tbody
+      - @transactions.each do |transaction|
+        %tr
+          %td= transaction.date
+          %td.text-right
+            =transaction.financial_asset.ticker_symbol
+          %td.text-right
+            $#{'%.2f' % transaction.price_paid}
+          %td.text-right= '%.3f' % transaction.quantity
+          %td.text-right= '%.2f' % transaction.value
+          %td.text-right= '%.2f' % transaction.current_value
+          %td.text-right= '%.2f' % transaction.profit_loss
+          %td.text-right
+            = '%.3f' % transaction.pct_profit_loss
+            \%
+          %td.text-right= transaction.investment
+
+#datapoints-no-dividends{'data-datapoints' => "#{@datapoints_no_dividends.to_json}"}
+#datapoints-with-dividends{'data-datapoints' => "#{@datapoints_with_dividends.to_json}"}
+#investment-data{'data-datapoints' => "#{@investment_data.to_json}"}
+#dividend-data{'data-datapoints' => "#{@dividend_data.to_json}"}
+%canvas#datachart.plot{:style => "height:300px; backgroundColor: \"#ddd !important;\""}
