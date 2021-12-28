@@ -90,7 +90,7 @@ class FinancialAsset < ApplicationRecord
                 ,sum(quantity) over (order by date) as cum_quantity
               from
                 transactions
-    	      where
+              where
                 investment = false
               order by
                 date
